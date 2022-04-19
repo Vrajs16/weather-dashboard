@@ -1,9 +1,9 @@
 #!/bin/bash
-
-# Remove all files if the user quites the program
-trap 'rm parsippany.* newark.* atlantic_city.* princeton.* salem.*; exit' SIGINT
+# Trap to remove all files if the user quites the program with CTRL+C
+trap 'rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1; exit' SIGINT
 
 # while loop to run indefinitely
+echo "BEGINNNING WHILE LOOP"
 while :
 do
     # Download the html files from the webstie
@@ -25,14 +25,15 @@ do
     java -jar tagsoup-1.2.1.jar --files parsippany.html newark.html atlantic_city.html princeton.html salem.html 
     
     #Use XML minidom with python script to parse data
-
+    echo "PARSING XML FILES AND STORING TO MYSQL"
+    sleep 10s
     #Remove the files
-    sleep 5
+
     echo "REMOVING FILES"
-    rm parsippany.* newark.* atlantic_city.* princeton.* salem.*
+    rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1
     
     #Sleep for 6 hours to run again
-    echo "SLEEPING FOR 6 HOURS"
-    sleep 6h
+    echo -e "SLEEPING FOR 6 HOURS\n"
+    sleep 10s
 done
 
