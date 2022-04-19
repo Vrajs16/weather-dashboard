@@ -1,0 +1,5 @@
+https://forecast.weather.gov/MapClick.php?CityName=Parsippany&state=NJ
+https://forecast.weather.gov/MapClick.php?CityName=Newark&state=NJ
+https://forecast.weather.gov/MapClick.php?CityName=Atlantic+City&state=NJ
+https://forecast.weather.gov/MapClick.php?CityName=Princeton&state=NJ
+https://forecast.weather.gov/MapClick.php?CityName=Salem&state=NJ
