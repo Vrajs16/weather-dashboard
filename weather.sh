@@ -1,6 +1,6 @@
 #!/bin/bash
 # Trap to remove all files if the user quites the program with CTRL+C
-trap 'rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1; exit' SIGINT
+trap 'echo "REMOVING FILES IF ANY"; rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1; exit' SIGINT
 
 # while loop to run indefinitely
 echo "BEGINNNING WHILE LOOP"
@@ -26,9 +26,14 @@ do
     
     #Use XML minidom with python script to parse data
     echo "PARSING XML FILES AND STORING TO MYSQL"
-    sleep 10s
-    #Remove the files
+    #Change to python or leave as python3?
+    python parser.py parsippany.xml
+    python parser.py newark.xml
+    python parser.py atlantic_city.xml
+    python parser.py princeton.xml
+    python parser.py salem.xml
 
+    #Remove the files
     echo "REMOVING FILES"
     rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1
     
@@ -36,4 +41,3 @@ do
     echo -e "SLEEPING FOR 6 HOURS\n"
     sleep 10s
 done
-
