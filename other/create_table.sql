@@ -6,6 +6,7 @@ CREATE DATABASE weather;
 USE weather;
 
 CREATE TABLE weather_data(
+    day_id INT NOT NULL,
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
     day VARCHAR(255) NOT NULL,
@@ -14,7 +15,8 @@ CREATE TABLE weather_data(
     temperature INT(3) NOT NULL,
     short_description VARCHAR(255) NOT NULL,
     long_description VARCHAR(1000) NOT NULL,
-    last_update DATETIME NOT NULL
+    last_forecast_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Put some personalization and preferences in this table, 

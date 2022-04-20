@@ -1,11 +1,22 @@
 import sys
 import xml.dom.minidom as minidom 
-import mysql.connector as mysql
+import mysql.connector
+from datetime import datetime
 
-def addToSQL(data):
-    # print(data,'\n\n')
-    pass
+LIGHT_GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+LIGHT_RED='\033[1;31m'
+NC='\033[0m'
 
+def delete(data,cursor):
+    query = "DELETE FROM weather_data WHERE city=%s"
+    cursor.execute(query, (data['city'],))
+
+def addToSQL(data,cursor):
+    t = data['last_update'].split()
+    last_forecast_update = datetime.strptime(f"{t[3]} {t[4]} {t[5]} {t[0]}{t[1]}", "%b %d, %Y %I:%M%p")
+    query = "INSERT INTO weather_data (day_id, city, state, day, day_or_night, temperature_text, temperature, short_description, long_description, last_forecast_update) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query, (data['day_id'], data['city'], data['state'], data['day'], data['day_or_night'], data['temperature_text'], data['temperature'], data['short_description'], data['long_description'], last_forecast_update))
 
 
 def getCityAndDate(document):
@@ -28,6 +39,7 @@ def getCityAndDate(document):
 
 def parseFile(document):
     tempList = []
+    day_id = 1
     for ul in document.getElementsByTagName("ul"):
         if(ul.hasAttribute("id")):
             for li in ul.getElementsByTagName("li"):
@@ -53,16 +65,35 @@ def parseFile(document):
                     tempD['day'] = tempD['day'].strip()
                     tempD['short_description'] = tempD['short_description'].strip()
                     tempD['city'], tempD['state'], tempD['last_update'] = getCityAndDate(document)
+                    tempD['day_id'] = day_id
                     tempList.append(tempD)
-    
+                    day_id += 1
     return tempList
 
 def main():
     pData = parseFile(minidom.parse(sys.argv[1]))
-    print("READ DATA FOR FILE:",sys.argv[1])
+    print(f"READ DATA FOR FILE:{YELLOW}",sys.argv[1],f"{NC}")
     print("STORING DATA IN DATABASE")
-    for data in pData:
-        addToSQL(data)
+    try:
+        cnx = mysql.connector.connect(host="localhost", user='root', password='testing', database='weather')
+        cursor = cnx.cursor()
+        delete(pData[0],cursor)
+        for data in pData:
+            addToSQL(data, cursor)
+        cnx.commit()
+        cursor.close()
+        print(f"{LIGHT_GREEN}DATA STORED SUCCESSFULLY{NC}\n")
+    except mysql.connector.Error as err:
+        print(f"{LIGHT_RED}",err,f"{NC}\n",sep="")
+        cnx.rollback()
+    finally:
+        try:
+            cnx
+        except NameError:
+            pass
+        else:
+            cnx.close()
+
 
 if __name__ == "__main__":
     main()
