@@ -22,7 +22,7 @@ do
     echo -e "${GREEN}CHECKING FOR TAGSOUP.jar${NC}"
     FILENAME="tagsoup-1.2.1.jar"
     if [ ! -f "$FILENAME" ]; then
-        echo -e "${LIGHT_RED} YOU DON'T HAVE TAG SOUP - DOWNLOADING IT!${NC}"    
+        echo -e "${LIGHT_RED}YOU DON'T HAVE TAG SOUP - DOWNLOADING IT!${NC}"    
         wget -qO tagsoup-1.2.1.jar "https://repo1.maven.org/maven2/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar"
     fi
 
