@@ -3,51 +3,116 @@
 <?php require 'dbfuncs.php'; ?>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+  <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <table align="center" border="1">
-        <thead>
-            <tr>
-                <th>Day_id</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Day</th>
-                <th>Day_or_night</th>
-                <th>Temperature_text</th>
-                <th>Temperature</th>
-                <th>Short_description</th>
-                <th>Long_description</th>
-                <th>Last_forecast_update</th>
-                <th>Last_update</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $cursor = getAllWeatherData();
-            while ($row = $cursor->fetch_assoc()) {
-                echo '<tr>';
-                echo '<td>' . $row['day_id'] . '</td>';
-                echo '<td>' . $row['city'] . '</td>';
-                echo '<td>' . $row['state'] . '</td>';
-                echo '<td>' . $row['day'] . '</td>';
-                $answer = (intval($row['day_or_night'])) ? 'TRUE' : 'FALSE';
-                echo '<td>' . $answer . '</td>';
-                echo '<td>' . $row['temperature_text'] . '</td>';
-                echo '<td>' . $row['temperature'] . '</td>';
-                echo '<td>' . $row['short_description'] . '</td>';
-                echo '<td>' . $row['long_description'] . '</td>';
-                echo '<td>' . $row['last_forecast_update'] . '</td>';
-                echo '<td>' . $row['last_update'] . '</td>';
-                echo '</tr>';
-            }
-            ?>
-        </tbody>
-    </table>
+  <div class="top-navigation">
+    <a style="text-decoration: none;" href="/index.php">
+      <h1 class="dash-title">WEATHER DASHBOARD</h1>
+    </a>
+  </div>
+  <div>
+    <!-- Create from php-->
+    <form class="container" action="index.php" , method="get">
+      <?php
+      if (isset($_GET['city'])) {
+        $city = $_GET['city'];
+        if ($city == "Parsippany") {
+          echo '
+          <input class="item item-selected" type="submit" name="city" value="Parsippany" disabled/>
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item" type="submit" name="city" value="Salem" />';
+        } else if ($city == "Newark") {
+          echo '
+          <input class="item" type="submit" name="city" value="Parsippany" />
+          <input class="item item-selected" type="submit" name="city" value="Newark" disabled/>
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item" type="submit" name="city" value="Salem" />';
+        } else if ($city == "Princeton") {
+          echo  '
+          <input class="item" type="submit" name="city" value="Parsippany" />
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item item-selected" type="submit" name="city" value="Princeton" disabled />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item" type="submit" name="city" value="Salem" />';
+        } else if ($city == "Atlantic City") {
+          echo  '
+          <input class="item" type="submit" name="city" value="Parsippany" />
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item item-selected" type="submit" name="city" value="Atlantic City" disabled />
+          <input class="item" type="submit" name="city" value="Salem" />';
+        } else if ($city == "Salem") {
+          echo  '
+          <input class="item" type="submit" name="city" value="Parsippany" />
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item item-selected" type="submit" name="city" value="Salem" disabled />';
+        } else {
+          echo '
+          <input class="item item-selected" type="submit" name="city" value="Parsippany" disabled />
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item" type="submit" name="city" value="Salem" />';
+        }
+      } else {
+        echo '
+        <input class="item item-selected" type="submit" name="city" value="Parsippany" disabled />
+          <input class="item" type="submit" name="city" value="Newark" />
+          <input class="item" type="submit" name="city" value="Princeton" />
+          <input class="item" type="submit" name="city" value="Atlantic City" />
+          <input class="item" type="submit" name="city" value="Salem" />';
+      }
+      ?>
+    </form>
+  </div>
+  <div class="weather-dashboard">
+    <?php
+    if (isset($_GET['city'])) {
+      $cities = array("Parsippany", "Newark", "Princeton", "Atlantic City", "Salem");
+      $city = $_GET['city'];
+      if (in_array($city, $cities)) {
+        $cursor = getCityWeather($city);
+        $row = $cursor->fetch_assoc();
+        if (is_null($row)) {
+          echo "SOME ERROR HAS OCCURED. PLEASE TRY AGAIN LATER";
+        } else {
+          echo "<div class='weather-item'>From PHP</div>";
+          while ($row = $cursor->fetch_assoc()) {
+            break;
+          }
+        }
+      }
+    }
+    ?>
+    <div class='weather-item'>
+      <div>
+        Day
+      </div>
+      <div>
+        Tempeature
+      </div>
+      <div>
+        Short Description
+      </div>
+      <div>
+        Long Description
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
+
+<script></script>
