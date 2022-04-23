@@ -50,7 +50,7 @@ body {
 }
 
 .weather-dashboard {
-  margin: 50px auto;
+  margin: 0px auto 50px;
   max-width: 90%;
   padding: 20px;
   color: black;
@@ -67,16 +67,11 @@ body {
 
 .weather-item {
   padding: 20px;
-  background-color: lightblue;
+  background-color: lightskyblue;
   border-radius: 10px;
   width: 400px;
   height: 500px;
-}
-
-.witem-day {
-}
-
-.preferences {
+  border: 3px solid black;
 }
 
 .wrapper {
