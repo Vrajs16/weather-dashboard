@@ -1,4 +1,4 @@
-<?php require 'dbfuncs.php';
+<?php require __DIR__ . '/../db/dbfuncs.php';
 if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
   $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 } else {

@@ -1,4 +1,2 @@
-<?php 
-
-
-?>
+<?php
+echo "hello World";

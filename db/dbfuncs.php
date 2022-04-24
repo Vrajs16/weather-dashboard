@@ -1,5 +1,6 @@
 <?php
-require 'dbconn.php';
+
+require __DIR__ . '/dbconn.php';
 
 
 function getAllWeatherData()

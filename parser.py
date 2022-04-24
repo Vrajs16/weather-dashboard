@@ -76,7 +76,7 @@ def main():
     print(f"READ DATA FOR FILE:{YELLOW}",sys.argv[1],f"{NC}")
     print("STORING DATA IN DATABASE")
     try:
-        cnx = mysql.connector.connect(host="localhost", user='root', password='testing', database='weather')
+        cnx = mysql.connector.connect(host="sql5.freemysqlhosting.net", user='sql5487808', password='KPKuhE2A5u', database='sql5487808')
         cursor = cnx.cursor()
         delete(pData[0],cursor)
         for data in pData:
