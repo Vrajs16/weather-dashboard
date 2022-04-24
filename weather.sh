@@ -40,6 +40,3 @@ python3 parser.py salem.xhtml
 #Remove the files
 echo -e "${LIGHT_RED}REMOVING FILES: .xhtml & .html${NC}"
 rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1
-
-#Sleep for 6 hours to run again
-echo -e "${LIGHT_PURPLE}SLEEPING FOR 6 HOURS\n${NC}"
