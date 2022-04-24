@@ -24,6 +24,7 @@
                 <th>Long_description</th>
                 <th>Last_forecast_update</th>
                 <th>Last_update</th>
+                <th>Script_ran</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
                 echo '<td>' . $row['long_description'] . '</td>';
                 echo '<td>' . $row['last_forecast_update'] . '</td>';
                 echo '<td>' . $row['last_update'] . '</td>';
+                echo '<td>' . $row['script_ran'] . '</td>';
                 echo '</tr>';
             }
             ?>

@@ -152,8 +152,8 @@ function iconToChoose($desc)
   </div>
   <div class="top-navigation">
     <?php
-    if (!empty($row['last_update'])) {
-      $time = date('m-d-Y \a\t h:i A', strtotime($row['last_update']));
+    if (!empty($row['script_ran'])) {
+      $time = date('m-d-Y \a\t h:i A', strtotime($row['script_ran']));
     } else {
       $time = "ERROR";
     }

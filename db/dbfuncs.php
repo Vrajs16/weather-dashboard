@@ -6,7 +6,7 @@ require __DIR__ . '/dbconn.php';
 function getAllWeatherData()
 {
     $cnx = mysqlConnect();
-    $query = 'SELECT * FROM weather_data';
+    $query = "SELECT *, CONVERT_TZ(last_update,'+00:00','-4:00') as script_ran FROM weather_data";
     $cursor = $cnx->query($query);
     mysqlClose($cnx);
     return $cursor;
@@ -14,7 +14,7 @@ function getAllWeatherData()
 function getCityWeather($city)
 {
     $cnx = mysqlConnect();
-    $query = 'SELECT * FROM weather_data WHERE city="' . $city . '"';
+    $query = "SELECT * , CONVERT_TZ(last_update,'+00:00','-4:00') as script_ran FROM weather_data WHERE city=\"" . $city . '"';
     $cursor = $cnx->query($query);
     mysqlClose($cnx);
     return $cursor;
