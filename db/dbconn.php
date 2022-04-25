@@ -1,7 +1,9 @@
 <?php
 function mysqlConnect()
 {
-    $cnx = new mysqli('sql5.freemysqlhosting.net', 'sql5487808', 'KPKuhE2A5u', 'sql5487808');
+    $DBHOST = getenv("DB_HOST");
+    $PASSWORD = getenv("MYSQL_PASSWORD");
+    $cnx = new mysqli($DBHOST, 'sql5487808', $PASSWORD, 'sql5487808');
     if ($cnx->connect_error)
         die('Connection failed: ' . $cnx->connect_error);
     $cnx->set_charset('utf8');

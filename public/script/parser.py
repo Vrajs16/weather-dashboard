@@ -1,6 +1,7 @@
 import sys
 import xml.dom.minidom as minidom 
 import mysql.connector
+import os
 from datetime import datetime
 
 LIGHT_GREEN='\033[1;32m'
@@ -75,8 +76,10 @@ def main():
     pData = parseFile(minidom.parse(sys.argv[1]))
     print(f"READ DATA FOR FILE:{YELLOW}",sys.argv[1],f"{NC}")
     print("STORING DATA IN DATABASE")
+    DBHOST = os.environ.get('DB_HOST')
+    PASSWORD = os.environ.get('DB_PASSWORD')
     try:
-        cnx = mysql.connector.connect(host="sql5.freemysqlhosting.net", user='sql5487808', password='KPKuhE2A5u', database='sql5487808')
+        cnx = mysql.connector.connect(host=DBHOST, user='sql5487808', password=PASSWORD, database='sql5487808')
         cursor = cnx.cursor()
         delete(pData[0],cursor)
         for data in pData:
