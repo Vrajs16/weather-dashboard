@@ -1,12 +1,12 @@
 #!/bin/bash
 # Trap to remove all files if the user quites the program with CTRL+C
 trap 'echo -e "${LIGHT_RED}\nYou pressed CTRL+C${NC}\n${LIGHT_CYAN}Removing all .html or .xhtml files from dir${NC}"; rm parsippany.* newark.* atlantic_city.* princeton.* salem.* >/dev/null 2>&1; exit' SIGINT
-GREEN='\033[0;32m'
-LIGHT_CYAN='\033[1;36m'
-YELLOW='\033[1;33m'
-LIGHT_RED='\033[1;31m'
-LIGHT_PURPLE='\033[1;35m'
-NC='\033[0m'
+GREEN='' #'\033[0;32m'
+LIGHT_CYAN='' #'\033[1;36m'
+YELLOW='' #'\033[1;33m'
+LIGHT_RED='' #'\033[1;31m'
+LIGHT_PURPLE='' #'\033[1;35m'
+NC='' #'\033[0m'
 
 echo -e "${LIGHT_CYAN}RUNNING SCRIPT${NC}"
 # Download the html files from the webstie
