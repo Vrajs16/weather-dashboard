@@ -11,7 +11,7 @@
 
 <body>
     <table align="center" border="1">
-        <caption style="font-size: large; font-weight: 500;">Weather Data Table</caption>
+        <caption style="font-weight:600; font-size:30px">Weather Data Table</caption>
         <thead>
             <tr>
                 <th>Day_id</th>
@@ -55,10 +55,10 @@
     <hr>
     <br>
     <table align="center" border="1">
-        <caption style="font-size: large; font-weight: 500;">Users Table</caption>
+        <caption style="font-weight:600; font-size:30px">Users Table</caption>
         <thead>
             <tr>
-                <th>Ip Address</th>
+                <th>IP Address</th>
                 <th>Saved City</th>
                 <th>Saved Color</th>
             </tr>
