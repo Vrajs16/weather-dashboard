@@ -16,8 +16,8 @@ CREATE TABLE weather_data(
     temperature INT(3) NOT NULL,
     short_description VARCHAR(255) NOT NULL,
     long_description VARCHAR(1000) NOT NULL,
-    last_forecast_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    last_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    last_forecast_update TIMESTAMP NOT NULL,
+    last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Put some personalization and preferences in this table, 
