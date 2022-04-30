@@ -19,6 +19,14 @@ function getCityWeather($city)
     mysqlClose($cnx);
     return $cursor;
 }
+function getAllUserData()
+{
+    $cnx = mysqlConnect();
+    $query = "SELECT * FROM users";
+    $cursor = $cnx->query($query);
+    mysqlClose($cnx);
+    return $cursor;
+}
 
 function getUserInfo($ip)
 {

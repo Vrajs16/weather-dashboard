@@ -11,6 +11,7 @@
 
 <body>
     <table align="center" border="1">
+        <caption style="font-size: large; font-weight: 500;">Weather Data Table</caption>
         <thead>
             <tr>
                 <th>Day_id</th>
@@ -45,6 +46,31 @@
                 echo '<td>' . $row['last_forecast_update'] . '</td>';
                 echo '<td>' . $row['last_update'] . '</td>';
                 echo '<td>' . $row['script_ran'] . '</td>';
+                echo '</tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <br>
+    <table align="center" border="1">
+        <caption style="font-size: large; font-weight: 500;">Users Table</caption>
+        <thead>
+            <tr>
+                <th>Ip Address</th>
+                <th>Saved City</th>
+                <th>Saved Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $cursor = getAllUserData();
+            while ($row = $cursor->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $row['ip_addr'] . '</td>';
+                echo '<td>' . $row['saved_city'] . '</td>';
+                echo '<td>' . $row['saved_color'] . '</td>';
                 echo '</tr>';
             }
             ?>
