@@ -14,5 +14,5 @@ Website to run free cronjobs (Every 3 hours for this project): [https://cron-job
 DB SERVER: Heroku Addon: CLEARDB UPTO 5MB FOR FREE, more than enough for this project as I delete the old info
 
 Website to scrap info: [https://forecast.weather.gov/](https://forecast.weather.gov/)\
-Website url with params (Remove Brackets): https://forecast.weather.gov/MapClick.php?CityName={NAME OF CITY}&state={STATE ABBREVIATIONS}
+Website url with params (Remove Brackets): `https://forecast.weather.gov/MapClick.php?CityName={NAME OF CITY}&state={STATE ABBREVIATION}`
 
