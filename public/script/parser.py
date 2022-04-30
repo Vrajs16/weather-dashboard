@@ -121,7 +121,6 @@ def main():
     print(f"READ DATA FOR FILE:{YELLOW}", sys.argv[1], f"{NC}")
     print("STORING DATA IN DATABASE")
 
-    urlparse.uses_netloc("mysql")
     url = urlparse.urlparse(os.environ["CLEARDB_DATABASE_URL"])
 
     NAME = url.path[1:]

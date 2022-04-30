@@ -7,4 +7,4 @@ Go to /dbtable.php to see the database table of the weather.
 
 I have a cronjob which updates every the website every 3 hours.
 
-DB SERVER:https://www.freemysqlhosting.net/
+DB SERVER: Heroku Addon
