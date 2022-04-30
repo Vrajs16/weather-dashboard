@@ -51,9 +51,7 @@
             ?>
         </tbody>
     </table>
-    <br>
     <hr>
-    <br>
     <table align="center" border="1">
         <caption style="font-weight:600; font-size:30px">Users Table</caption>
         <thead>
