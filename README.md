@@ -5,6 +5,7 @@ Deployed Version on Heroku: [https://vraj-weather-dash.herokuapp.com/](https://v
 Go to /index.php to see the weather dashboard.\
 Go to /dbtable.php to see the database table of the weather.
 
+Go to /script/pingthepage.php to see a ping page to wake up the dyno (CRONJOB ENDPOINT)\
 Go to /script/getweather.php to run bash script using php. (CRONJOB ENDPOINT)\
 Go to /script/parser.py to see python scrapper.\
 Go to /script/weather.sh to see bash script.
